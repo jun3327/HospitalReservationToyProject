@@ -17,7 +17,7 @@ public class DiagnosisInfo {
 
     private int patientExpense;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "reservation_id")
     private Reservation reservation;
 }

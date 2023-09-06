@@ -41,4 +41,31 @@ public class Reservation {
 
     //예약시간 확인
 //    private List<LocalDateTime> reserveTime = new ArrayList<>();
+
+    //**연관관계 편의 메서드**
+
+    public void setPatient(Patient patient) {
+        this.patient = patient;
+        patient.getReservations().add(this);
+    }
+
+    public void setHospital(Hospital hospital) {
+        this.hospital = hospital;
+        hospital.getReservations().add(this);
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
+//        department.getReservations().add(this); -->진료과에서 예약정보 조회를 굳이 할 필요가 없을듯
+    }
+
+    public void setDoctor(Doctor doctor) {
+        this.doctor = doctor;
+        doctor.getReservations().add(this);
+    }
+
+    public void setDiagnosisInfo(DiagnosisInfo diagnosisInfo) {
+        this.diagnosisInfo = diagnosisInfo;
+        diagnosisInfo.setReservation(this);
+    }
 }

@@ -22,10 +22,19 @@ public class Hospital {
     @Embedded
     private Address adrress;
 
-    @OneToMany(mappedBy = "hospital")
+    @OneToMany(mappedBy = "hospital", cascade = CascadeType.ALL)
     private List<Department> departments = new ArrayList<>();
 
-    @OneToMany(mappedBy = "hospital", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "hospital")
     private List<Reservation> reservations = new ArrayList<>();
 
+    @OneToMany(mappedBy = "hospital", cascade = CascadeType.ALL)
+    private List<Doctor> doctors = new ArrayList<>();
+
+    //**연관관계 편의 메서드** --> 병원 부서 설정
+
+    public void setDepartment(Department department) {
+        this.departments.add(department);
+        department.setHospital(this);
+    }
 }

@@ -21,22 +21,16 @@ public class DepartmentService {
     // 특정 병원의 진료과 등록
     @Transactional
     public String join(Department department) {
-        try {
             // 중복 검사를 수행하고 중복이 없을 경우 저장
             validateDuplicateDepartment(department);
             return departmentRepository.save(department);
-        } catch (DataIntegrityViolationException e) {
-            // 중복 제약 조건 위반 예외 처리
-            String errorMessage = "이미 존재하는 진료과입니다.";
-            throw new IllegalArgumentException(errorMessage);
-        }
     }
 
     private void validateDuplicateDepartment(Department department) {
         // 병원 ID와 전화번호로 중복 검사
         List<Department> departments = departmentRepository.findByHospitalIdAndPhoneNumber(department.getHospital().getId(), department.getPhoneNumber());
         if (departments != null) {
-            throw new IllegalArgumentException("이미 존재하는 진료과입니다.");
+            throw new IllegalStateException("이미 존재하는 진료과입니다.");
         }
     }
 

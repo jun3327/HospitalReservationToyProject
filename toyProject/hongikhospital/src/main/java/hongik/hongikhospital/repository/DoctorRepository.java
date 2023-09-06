@@ -24,7 +24,7 @@ public class DoctorRepository {
     }
 
     public List<Doctor> findAll() {
-        return em.createQuery("select d from Doctor", Doctor.class)
+        return em.createQuery("select d from Doctor d", Doctor.class)
                 .getResultList();
     }
 
@@ -32,6 +32,15 @@ public class DoctorRepository {
     public List<Doctor> findAllByDepartmentId(Long departmentId) {
         return em.createQuery("select d from Doctor d where d.department.id= :departmentId", Doctor.class)
                 .setParameter("departmentId", departmentId)
+                .getResultList();
+    }
+
+
+    //이름과 진료과 전화번호로 특정 의사 조회 --> 의사 등록 시 검증 절차에 필요,
+    public List<Doctor>  findOneByNameAndDepartmentPhone(String name, int number) {
+        return em.createQuery("select d from Doctor d where name= :name and department.phoneNumber= : number", Doctor.class)
+                .setParameter("name", name)
+                .setParameter("number", number)
                 .getResultList();
     }
 }

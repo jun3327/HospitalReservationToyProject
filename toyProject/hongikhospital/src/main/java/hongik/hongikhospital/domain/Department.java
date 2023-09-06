@@ -29,7 +29,6 @@ public class Department {
     private List<Doctor> doctors = new ArrayList<>();
 
     //**연관관계 편의 메서드** --> 소속 병원 설정
-
     public void setHospital(Hospital hospital) {
         this.hospital = hospital;
         hospital.getDepartments().add(this);

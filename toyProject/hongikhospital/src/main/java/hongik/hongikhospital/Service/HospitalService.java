@@ -19,6 +19,7 @@ public class HospitalService {
     private final HospitalRepository hospitalRepository;
 
     //병원 등록
+    @Transactional
     public Long join(Hospital hospital) {
         try {
             return hospitalRepository.save(hospital);

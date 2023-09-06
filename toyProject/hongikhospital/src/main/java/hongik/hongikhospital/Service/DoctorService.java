@@ -17,6 +17,7 @@ public class DoctorService {
     private final DoctorRepository doctorRepository;
 
     //의사 등록
+    @Transactional
     public Long join(Doctor doctor, Department department) {
         validateDuplicateDoctor(doctor, department.getPhoneNumber());
         doctorRepository.save(doctor);

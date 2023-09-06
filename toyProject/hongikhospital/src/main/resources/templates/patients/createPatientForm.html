@@ -9,7 +9,7 @@
 <body>
 <div class="container">
     <div th:replace="fragments/bodyHeader :: bodyHeader"/>
-    <form role="form" action="/members/new" th:object="${patientForm}"
+    <form role="form" action="/patients/new" th:object="${patientForm}"
           method="post">
         <div class="form-group">
             <label th:for="name">이름</label>
@@ -23,12 +23,14 @@ fieldError' : 'form-control'">
         <div class="form-group">
             <label th:for="age">나이</label>
             <input type="text" th:field="*{age}" class="form-control"
-                   placeholder="도시를 입력하세요">
+                   placeholder="나이를 입력하세요">
         </div>
         <div class="form-group">
             <label th:for="gender">성별</label>
-            <input type="text" th:field="*{gender}" class="form-control"
-                   placeholder="거리를 입력하세요">
+            <select th:field="*{gender}" class="form-control">
+                <option value="MAN">MAN</option>
+                <option value="WOMAN">WOMAN</option>
+            </select>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>

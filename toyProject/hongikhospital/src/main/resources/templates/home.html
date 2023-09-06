@@ -1,10 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header">
+    <title>Hello</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-$END$
+<div class="container">
+    <div th:replace="fragments/bodyHeader :: bodyHeader" />
+    <div class="jumbotron">
+        <h1>Welcome</h1>
+        <p class="lead">환자 등록</p>
+        <p>
+            <a class="btn btn-lg btn-secondary" href="/patients/new">환자 가입</a>
+        </p>
+        <p class="lead">병원 등록</p>
+        <p>
+            <a class="btn btn-lg btn-dark" href="/hospitals/new">병원 등록</a>
+            <a class="btn btn-lg btn-dark" href="/hospitals">병원 목록</a>
+        </p>
+    </div>
+    <div th:replace="fragments/footer :: footer" />
+</div> <!-- /container -->
 </body>
 </html>

@@ -15,7 +15,7 @@ public class DiagnosisInfoService {
 
     //진료 정보 등록
     @Transactional
-    public Long join(DiagnosisInfo diagnosisInfo) {
+    public Long make(DiagnosisInfo diagnosisInfo) {
         diagnosisInfoRepository.save(diagnosisInfo);
         return diagnosisInfo.getId();
     }

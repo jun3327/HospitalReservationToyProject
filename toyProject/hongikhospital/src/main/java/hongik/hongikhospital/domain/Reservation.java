@@ -39,8 +39,9 @@ public class Reservation {
     @OneToOne(mappedBy = "reservation", fetch = FetchType.LAZY)
     private DiagnosisInfo diagnosisInfo;
 
-    //예약시간 확인
-//    private List<LocalDateTime> reserveTime = new ArrayList<>();
+    private LocalDateTime reserveTime;
+
+    private ReserveStatus reserveStatus; // RESERVE, CANCEL, TREAT
 
     //**연관관계 편의 메서드**
 
@@ -67,5 +68,25 @@ public class Reservation {
     public void setDiagnosisInfo(DiagnosisInfo diagnosisInfo) {
         this.diagnosisInfo = diagnosisInfo;
         diagnosisInfo.setReservation(this);
+    }
+
+    //**비즈니스 로직**
+
+    /**
+     * 예약 생성
+     */
+    public static Reservation createReservation(Doctor doctor, Patient patient) {
+
+        Reservation reservation = new Reservation();
+
+        reservation.setReserveTime(LocalDateTime.now());
+        reservation.setDoctor(doctor);
+        reservation.setPatient(patient);
+        reservation.setDepartment(doctor.getDepartment());
+        reservation.setHospital(doctor.getHospital());
+        reservation.setReserveStatus(ReserveStatus.RESERVE);
+
+        return reservation;
+
     }
 }

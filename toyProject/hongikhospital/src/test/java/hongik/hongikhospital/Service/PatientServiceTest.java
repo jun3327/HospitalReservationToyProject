@@ -28,8 +28,6 @@ public class PatientServiceTest {
     @Autowired
     PatientService patientService;
 
-    @Autowired
-    EntityManager em;
     @Test
     public void 회원가입() throws Exception {
         //given

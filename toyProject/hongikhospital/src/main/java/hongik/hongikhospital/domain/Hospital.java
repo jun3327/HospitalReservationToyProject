@@ -17,6 +17,7 @@ public class Hospital {
     @Column(name = "hospital_id")
     private Long id;
 
+    @Column(unique = true)
     private String name;
 
     @Embedded

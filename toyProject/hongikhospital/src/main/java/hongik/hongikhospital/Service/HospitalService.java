@@ -1,6 +1,7 @@
 package hongik.hongikhospital.Service;
 
 import hongik.hongikhospital.domain.Hospital;
+import hongik.hongikhospital.exception.DuplicateHospitalException;
 import hongik.hongikhospital.exception.DuplicatePatientException;
 import hongik.hongikhospital.repository.HospitalRepository;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +24,7 @@ public class HospitalService {
             return hospitalRepository.save(hospital);
         } catch (DataIntegrityViolationException e) {
             String errorMessage = "이미 존재하는 병원 이름입니다.";
-            throw new DuplicatePatientException(errorMessage);
+            throw new DuplicateHospitalException(errorMessage);
         }
     }
 

@@ -18,6 +18,7 @@ public class Department {
     @Column(name = "department_name")
     private String name;
 
+    @Column(unique = true)
     private int phoneNumber;
 
     @ManyToOne(fetch = FetchType.LAZY)

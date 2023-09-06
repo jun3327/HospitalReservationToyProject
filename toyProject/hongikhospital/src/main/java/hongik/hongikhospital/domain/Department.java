@@ -28,10 +28,10 @@ public class Department {
     @OneToMany(mappedBy = "department", cascade = CascadeType.ALL)
     private List<Doctor> doctors = new ArrayList<>();
 
-    //연관관계 편의 메서드 --> 부서 소속 의사 설정 (의사 도메인의 부서 필드와 병원 필드 설정하기)
-    public void setDoctor(Doctor doctor) {
-        this.getDoctors().add(doctor);
-        doctor.setDepartment(this);
-        doctor.setHospital(this.getHospital());
+    //**연관관계 편의 메서드** --> 소속 병원 설정
+
+    public void setHospital(Hospital hospital) {
+        this.hospital = hospital;
+        hospital.getDepartments().add(this);
     }
 }

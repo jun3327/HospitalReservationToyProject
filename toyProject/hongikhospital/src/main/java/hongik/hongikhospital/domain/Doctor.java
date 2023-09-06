@@ -32,4 +32,14 @@ public class Doctor {
     @JoinColumn(name = "hospital_id")
     private Hospital hospital;
 
+    //연관관계 편의 메서드 --> 소속 병원, 진료과 설정
+    public void setHospital(Hospital hospital) {
+        this.hospital = hospital;
+        hospital.getDoctors().add(this);
+    }
+
+    public void setDepartment(Department department){
+        this.department = department;
+        department.getDoctors().add(this);
+    }
 }

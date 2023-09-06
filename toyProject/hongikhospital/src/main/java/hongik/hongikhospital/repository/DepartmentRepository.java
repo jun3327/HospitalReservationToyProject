@@ -19,6 +19,10 @@ public class DepartmentRepository {
         return department.getName();
     }
 
+    public Department findOne(Long id) {
+        return em.find(Department.class, id);
+    }
+
     //특정 병원의 특정 진료과 조회, 예외 처리 필요
     public Department findOneByDepartmentIdAndHospitalId(Long departmentId, Long hospitalId) {
         return em.createQuery("select d from Department d where d.id = :departmentId and d.hospital.id = :hospitalId", Department.class)

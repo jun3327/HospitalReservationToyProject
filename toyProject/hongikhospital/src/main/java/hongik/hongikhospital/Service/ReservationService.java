@@ -26,10 +26,6 @@ public class ReservationService {
         //엔티티 조회
         Patient patient = patientRepository.findOne(patientId);
         Doctor doctor = doctorRepository.findOne(doctorId);
-        System.out.println("*************************************************");
-        System.out.println("doctor = " + doctor);
-        System.out.println("patient = " + patient);
-        System.out.println("*************************************************");
 
         //중복 예약 방지 로직
         validateDuplicateReservation(doctor.getId(), patient.getId());
@@ -43,7 +39,7 @@ public class ReservationService {
         return reservation.getId();
     }
 
-    private void validateDuplicateReservation(Long doctorId, Long patientId) {
+    public void validateDuplicateReservation(Long doctorId, Long patientId) {
         ReserveStatus status = ReserveStatus.RESERVE;
         List<Reservation> duplicateReservation = reservationRepository.findDuplicateReservation(doctorId, patientId, status);
         if( !duplicateReservation.isEmpty() ) {

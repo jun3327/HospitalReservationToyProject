@@ -54,6 +54,24 @@ public class ReservationServiceTest {
         Assertions.assertThat(reservation.getDepartment()).isEqualTo(department);
     }
 
+    @Test(expected = IllegalStateException.class)
+    public void 중복예약방지() throws Exception {
+        //given
+        Patient patient = createPatient();
+        Hospital hospital = createHospital();
+        Department department = createDepartment(hospital);
+        Doctor doctor = createDoctor(hospital, department);
+
+        Reservation reservation1 = Reservation.createReservation(doctor, patient);
+        reservationRepository.save(reservation1);
+
+        //when
+        reservationService.validateDuplicateReservation(doctor.getId(), patient.getId());
+
+        //then
+        fail("에외가 발생해야 합니다");
+    }
+
     private Doctor createDoctor(Hospital hospital, Department department) {
         Doctor doctor = new Doctor();
         doctor.setName("Park");

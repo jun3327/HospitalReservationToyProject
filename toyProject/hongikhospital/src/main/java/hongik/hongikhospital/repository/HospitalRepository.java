@@ -19,6 +19,12 @@ public class HospitalRepository {
         return hospital.getId();
     }
 
+    public Long saveAndFlush(Hospital hospital) {
+        em.persist(hospital);
+        em.flush();
+        return hospital.getId();
+    }
+
     public Hospital findOne(Long id) {
         return em.find(Hospital.class, id);
     }
@@ -33,4 +39,5 @@ public class HospitalRepository {
                 .setParameter("name", name)
                 .getResultList();
     }
+
 }

@@ -10,6 +10,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
 import java.util.List;
 
 @Service
@@ -18,17 +19,18 @@ import java.util.List;
 public class PatientService {
 
     private final PatientRepository patientRepository;
-
-
+    private final EntityManager em;
     //환자 생성, 중복 검증
     @Transactional
     public Long createOne(String name, int age, Gender gender) {
         Patient patient = Patient.createPatient(name, age, gender);
+
         try {
-            patientRepository.save(patient);
+            patientRepository.saveAndFlush(patient);
         } catch (DataIntegrityViolationException e) {
-            throw e; //--> GlobalExceptionHandler 클래스 에서 처리
+            throw new DuplicatePatientException("이미 존재하는 환자 정보입니다");
         }
+
         return patient.getId();
     }
 

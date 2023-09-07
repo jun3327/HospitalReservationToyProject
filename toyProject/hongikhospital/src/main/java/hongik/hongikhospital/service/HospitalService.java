@@ -1,7 +1,9 @@
 package hongik.hongikhospital.service;
 
+import hongik.hongikhospital.domain.Address;
 import hongik.hongikhospital.domain.Hospital;
 import hongik.hongikhospital.exception.DuplicateHospitalException;
+import hongik.hongikhospital.exception.DuplicatePatientException;
 import hongik.hongikhospital.repository.HospitalRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -36,5 +38,17 @@ public class HospitalService {
     //특정 이름 병원 조회
     public Hospital findOne(Long hospitalId) {
         return hospitalRepository.findOne(hospitalId);
+    }
+
+    //병원 생성
+    @Transactional
+    public Long createOne(String name, String city, String street, String zipcode) {
+        Hospital hospital = Hospital.createHospital(name, city, street, zipcode);
+        try {
+            hospitalRepository.saveAndFlush(hospital);
+        } catch (DataIntegrityViolationException e) {
+            throw new DuplicateHospitalException("이미 존재하는 병원 정보입니다");
+        }
+        return hospital.getId();
     }
 }

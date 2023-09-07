@@ -32,4 +32,13 @@ public class Hospital {
     @OneToMany(mappedBy = "hospital", cascade = CascadeType.ALL)
     private List<Doctor> doctors = new ArrayList<>();
 
+    public static Hospital createHospital(String name, String city, String street, String zipcode) {
+        Hospital hospital = new Hospital();
+        Address address = new Address(city, street, zipcode);
+
+        hospital.setName(name);
+        hospital.setAdrress(address);
+
+        return hospital;
+    }
 }

@@ -19,7 +19,11 @@ public class PatientRepository{
         em.persist(patient);
         return patient.getId();
     }
-
+    public Long saveAndFlush(Patient patient) {
+        em.persist(patient);
+        em.flush();
+        return patient.getId();
+    }
     public Patient findOne(Long id) {
        return em.find(Patient.class, id);
     }

@@ -20,6 +20,6 @@ B612 백엔드 과제
 ##### 3. 2번에서 구현했던 예외 방식을 조금 수정했다. 2번에서 처럼 하면 다른 unique 제약 조건이 걸린 필드의 모든 DataIntegrityViolationException 예외에 대해 동일하게 처리되기 떄문에, 아래와 같이 각 도메인 별 사용자 정의 예외를 사용했다.
 <img width="779" alt="ssss" src="https://github.com/jun3327/HospitalReservationToyProject/assets/121341289/952ca0ab-f650-455c-b76b-d4d9a235a57f">
 
-##### 처음에는 try catch로 DataIntegrityViolationException를 서비스 계층에서 잡으려고 생 난리를 쳤는데, @Transanctional이 있는 서비스계층 메소드에 try catch를 백만번 적어 봤자 커밋 되는 시점 이전, 즉 메소드가 끝나기 전에는 db에 반영 되지 않으므로 try catch로 db관련 예외를 잡을 수 있을리가  없었다... controller에 서비스 계층의 예외를 넘기고 에러메시지를 작성할 수도 있겠지만 관심사 분리 원칙에 따라 지양했다. 어쩔 수 없이 강제로 flush() 하는 방법을 택해서 예외를 처리했다.
+##### 처음에는 try catch로 DataIntegrityViolationException를 서비스 계층에서 잡으려고 생 난리를 쳤는데, @Transanctional이 있는 서비스계층 메소드에 try catch를 백만번 적어 봤자 커밋 되는 시점 이전, 즉 메소드가 끝나기 전에는 db에 반영 되지 않으므로 try catch로 db관련 예외를 잡을 수 있을리가  없었다... controller에 서비스 계층의 예외를 넘기고 컨트롤러에서 에러메시지를 작성할 수도 있겠지만 관심사 분리 원칙에 따라 지양했다. 어쩔 수 없이 리포지토리에서 강제로 flush() 메소드를 추가해 예외를 처리했다.
 ##### 아래 코드는 PatientService 일부
 <img width="524" alt="image" src="https://github.com/jun3327/HospitalReservationToyProject/assets/121341289/7ba575fd-ac79-4e76-89cb-d0020a5b84f7">

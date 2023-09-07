@@ -1,4 +1,4 @@
-package hongik.hongikhospital.Service;
+package hongik.hongikhospital.service;
 
 import hongik.hongikhospital.domain.*;
 import hongik.hongikhospital.repository.DoctorRepository;
@@ -8,7 +8,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Service

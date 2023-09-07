@@ -1,4 +1,4 @@
-package hongik.hongikhospital.Service;
+package hongik.hongikhospital.service;
 
 import hongik.hongikhospital.domain.DiagnosisInfo;
 import hongik.hongikhospital.repository.DiagnosisInfoRepository;

@@ -15,10 +15,9 @@
             <label th:for="name">이름</label>
             <input type="text" th:field="*{name}" class="form-control"
                    placeholder="이름을 입력하세요"
-                   th:class="${#fields.hasErrors('name')}? 'form-control
-fieldError' : 'form-control'">
-            <p th:if="${#fields.hasErrors('name')}"
-               th:errors="*{name}">Incorrect date</p>
+                   th:class="${#fields.hasErrors('name')}? 'form-control fieldError' : 'form-control'">
+            <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Incorrect date</p>
+            <p th:if="${errorMessage}" class="text-danger" th:text="${errorMessage}"></p>
         </div>
         <div class="form-group">
             <label th:for="age">나이</label>

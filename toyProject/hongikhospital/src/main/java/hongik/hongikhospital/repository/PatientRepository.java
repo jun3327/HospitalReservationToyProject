@@ -2,6 +2,7 @@ package hongik.hongikhospital.repository;
 
 import hongik.hongikhospital.domain.Patient;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -10,7 +11,7 @@ import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
-public class PatientRepository {
+public class PatientRepository{
 
     private final EntityManager em;
 

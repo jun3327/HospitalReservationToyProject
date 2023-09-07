@@ -1,8 +1,7 @@
-package hongik.hongikhospital.Service;
+package hongik.hongikhospital.service;
 
 import hongik.hongikhospital.domain.Hospital;
 import hongik.hongikhospital.exception.DuplicateHospitalException;
-import hongik.hongikhospital.exception.DuplicatePatientException;
 import hongik.hongikhospital.repository.HospitalRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;

@@ -1,21 +1,15 @@
-package hongik.hongikhospital.Service;
+package hongik.hongikhospital.service;
 
 import hongik.hongikhospital.domain.Patient;
 import hongik.hongikhospital.exception.DuplicatePatientException;
 import hongik.hongikhospital.repository.PatientRepository;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
-import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
-
-import javax.persistence.EntityManager;
-
-import static org.junit.Assert.*;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)

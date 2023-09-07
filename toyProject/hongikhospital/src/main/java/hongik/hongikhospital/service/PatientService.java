@@ -1,9 +1,11 @@
-package hongik.hongikhospital.Service;
+package hongik.hongikhospital.service;
 
+import hongik.hongikhospital.domain.Gender;
 import hongik.hongikhospital.domain.Patient;
 import hongik.hongikhospital.exception.DuplicatePatientException;
 import hongik.hongikhospital.repository.PatientRepository;
 import lombok.RequiredArgsConstructor;
+import org.apache.logging.log4j.Logger;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,20 +19,20 @@ public class PatientService {
 
     private final PatientRepository patientRepository;
 
-    //환자 등록
-    @Transactional
-    public Long join(Patient patient) {
 
-        //patient name 필드에 unique 제약 조건을 걸고, 아래 코드는 검증 코드.
+    //환자 생성, 중복 검증
+    @Transactional
+    public Long createOne(String name, int age, Gender gender) {
+        Patient patient = Patient.createPatient(name, age, gender);
         try {
-            return patientRepository.save(patient);
+            patientRepository.save(patient);
         } catch (DataIntegrityViolationException e) {
-            String errorMessage = "이미 존재하는 환자 정보입니다.";
-            throw new DuplicatePatientException(errorMessage);
+            throw e; //--> GlobalExceptionHandler 클래스 에서 처리
         }
+        return patient.getId();
     }
 
-    //환자 전체 조회
+    //환자 전체 조회a
     public List<Patient> findPatients() {
          return patientRepository.findAll();
     }

@@ -1,4 +1,4 @@
-package hongik.hongikhospital.Service;
+package hongik.hongikhospital.service;
 
 import hongik.hongikhospital.domain.*;
 import hongik.hongikhospital.repository.DoctorRepository;
@@ -13,7 +13,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
-import javax.print.Doc;
 
 import static org.junit.Assert.*;
 

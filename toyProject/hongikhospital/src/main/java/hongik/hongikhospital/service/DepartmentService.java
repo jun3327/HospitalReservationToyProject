@@ -1,10 +1,9 @@
-package hongik.hongikhospital.Service;
+package hongik.hongikhospital.service;
 
 import hongik.hongikhospital.domain.Department;
 import hongik.hongikhospital.exception.NoDepartmentException;
 import hongik.hongikhospital.repository.DepartmentRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

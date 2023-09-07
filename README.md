@@ -4,7 +4,10 @@ B612 백엔드 과제
 ## *Requirements
 <img width="606" alt="홍익병원 요구사항" src="https://github.com/jun3327/HospitalReservationToyProject/assets/121341289/a9b190f5-1df3-4f78-893b-a559f209a252">
 
-#### 병원은 여러개. 병원 마다 여러 진료과가 있다. 진료과에는 여러 의사가 소속되어 있다. 
+#### 병원은 여러개. 병원 마다 여러 진료과가 있다. 진료과에는 여러 의사가 소속되어 있다.
+
+#### ERD:<img width="456" alt="image" src="https://github.com/jun3327/HospitalReservationToyProject/assets/121341289/2e655951-f5d2-4a16-b436-ef1f5ea386f6">
+
 ## *Refenrence 
 #### https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80%ED%8A%B8-JPA-%ED%99%9C%EC%9A%A9-1/dashboard (css과 html 레이아웃은 강의의 예시코드를 참고했습니다)
 

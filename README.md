@@ -22,4 +22,4 @@ B612 백엔드 과제 (시작 시점: 김영한 스프링 입문, 핵심 기본�
 
 ##### 처음에는 try catch로 DataIntegrityViolationException를 서비스 계층에서 잡으려고 생 난리를 쳤는데, @Transanctional이 있는 서비스계층 메소드에 try catch를 백만번 적어 봤자 커밋 되는 시점 이전, 즉 메소드가 끝나기 전에는 db에 반영 되지 않으므로 try catch로 db관련 예외를 잡을 수 있을리가  없었다...즉 try catch 다 지나가고 나서 예외가 터졌던 것.. controller에 서비스 계층의 예외를 넘기고 컨트롤러에서 에러메시지를 작성할 수도 있겠지만 관심사 분리 원칙에 따라 지양했다. 어쩔 수 없이 리포지토리에서 강제로 flush() 메소드를 추가해 예외를 처리했다.
 ##### 아래 코드는 PatientService 일부
-<img width="524" alt="image" src="https://github.com/jun3327/HospitalReservationToyProject/assets/121341289/7ba575fd-ac79-4e76-89cb-d0020a5b84f7">
+<img width="480" alt="image" src="https://github.com/jun3327/HospitalReservationToyProject/assets/121341289/48e88de2-f7f8-4b86-9d63-c5aa019a2397">

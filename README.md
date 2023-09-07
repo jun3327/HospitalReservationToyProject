@@ -17,7 +17,7 @@ B612 백엔드 과제
 ##### 2. 환자 이름 중복 가입 방지를 위한 검증 로직을 비즈니스 로직에 구현하지 않고, 동시성 문제 방지를 위해 name 필드에 unique 제약 조건을 걸어놨다. 중복 가입을 시도할 때 리포지토리 계층에서 DataIntegrityViolationException가 발생하는데, 서비스 계층에서 try catch로 잡고 컨트롤러에 던져서 화면에 에러 메시지를 띄울려고 했으나.. 잘 안됐다. DB에서 발생하는 예외는 try catch로 잡기 어려운것 같다. 그래서 GlobalExceptionHandler로 처리했다. 사실 제대로 한 것 같지는 않지만 일단 구현에만 집중했다.
 <img width="809" alt="dddd" src="https://github.com/jun3327/HospitalReservationToyProject/assets/121341289/c1747d29-d77f-4037-b831-9e089ec3d2d1">
 
-##### 3. 2번에서 구현했던 예외 방식을 조금 수정했다. 2번에서 처럼 하면 모든 DataIntegrityViolationException 예외에 대해 동일하게 처리되기 떄문에, 아래와 같이 사용자 정의 예외를 사용했다.
+##### 3. 2번에서 구현했던 예외 방식을 조금 수정했다. 2번에서 처럼 하면 다른 unique 제약 조건이 걸린 필드의 모든 DataIntegrityViolationException 예외에 대해 동일하게 처리되기 떄문에, 아래와 같이 각 도메인 별 사용자 정의 예외를 사용했다.
 <img width="779" alt="ssss" src="https://github.com/jun3327/HospitalReservationToyProject/assets/121341289/952ca0ab-f650-455c-b76b-d4d9a235a57f">
 
 ##### 처음에는 try catch로 DataIntegrityViolationException를 서비스 계층에서 잡으려고 생 난리를 쳤는데, @Transanctional이 있는 서비스계층 메소드에 try catch를 백만번 적어 봤자 커밋 되는 시점 이전, 즉 메소드가 끝나기 전에는 db에 반영 되지 않으므로 try catch로 db관련 예외를 잡을 수 있을리가  없었다... controller에 서비스 계층의 예외를 넘기고 에러메시지를 작성할 수도 있겠지만 관심사 분리 원칙에 따라 지양했다. 어쩔 수 없이 강제로 flush() 하는 방법을 택해서 예외를 처리했다.

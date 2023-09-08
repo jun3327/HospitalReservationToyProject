@@ -37,6 +37,6 @@ B612 백엔드 과제 (시작 시점: 김영한 스프링 입문, 핵심 기본�
 ##### (department 컨트롤러)
 ##### <img width="574" alt="image" src="https://github.com/jun3327/HospitalReservationToyProject/assets/121341289/66ea3621-4f0e-48ed-aab1-343d7223a404">
 ##### 위와 같이 설정하면, hospital과 department 컨트롤러 사이를 나눠서 보기가 좋다. 이제 department 관련 코드들은 department 컨트롤러에서 작성하면 된다.
-(* 수정: 생각해보니 Department 컨트롤러 클래스에 RequestMapping을 departments 시작 부분으로 해주면 굳이 Hospital 컨트롤러에서 forward를 할 필요가 없었다. 따라서 Hospital 컨트롤러의 코드는 지우고, 아래와 같이 Department 컨트롤러 클래스를 만들었다.) 
+(* 수정: 생각해보니 Department 컨트롤러 클래스에 RequestMapping을 departments 시작 부분으로 해주면 굳이 Hospital 컨트롤러에서 forward를 할 필요가 없었다. 따라서 Hospital 컨트롤러의 코드는 지우고, 아래와 같이 Department 컨트롤러 클래스를 만들었다. MVC 강의 안들어서 이런 부분이 힘들다) 
 ##### <img width="569" alt="image" src="https://github.com/jun3327/HospitalReservationToyProject/assets/121341289/81d62f29-cf77-448f-b4d0-5e27ae3d9654"> 
 

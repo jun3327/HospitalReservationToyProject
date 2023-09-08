@@ -19,27 +19,6 @@ public class HospitalService {
 
     private final HospitalRepository hospitalRepository;
 
-    //병원 등록
-    @Transactional
-    public Long join(Hospital hospital) {
-        try {
-            return hospitalRepository.save(hospital);
-        } catch (DataIntegrityViolationException e) {
-            String errorMessage = "이미 존재하는 병원 이름입니다.";
-            throw new DuplicateHospitalException(errorMessage);
-        }
-    }
-
-    //모든 병원 조회
-    public List<Hospital> findHospitals() {
-        return hospitalRepository.findAll();
-    }
-
-    //특정 이름 병원 조회
-    public Hospital findOne(Long hospitalId) {
-        return hospitalRepository.findOne(hospitalId);
-    }
-
     //병원 생성
     @Transactional
     public Long createOne(String name, String city, String street) {
@@ -52,4 +31,15 @@ public class HospitalService {
         }
         return hospital.getId();
     }
+
+    //모든 병원 조회
+    public List<Hospital> findHospitals() {
+        return hospitalRepository.findAll();
+    }
+
+    //특정 이름 병원 조회
+    public Hospital findOne(Long hospitalId) {
+        return hospitalRepository.findOne(hospitalId);
+    }
+
 }

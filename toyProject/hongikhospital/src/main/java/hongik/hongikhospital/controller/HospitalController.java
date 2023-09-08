@@ -28,7 +28,7 @@ public class HospitalController {
     @GetMapping("/hospitals/new")
     public String createHospitalForm(Model model) {
         model.addAttribute("hospitalForm", new HospitalForm());
-        return "/hospitals/createHospitalForm";
+        return "hospitals/createHospitalForm";
     }
 
     @PostMapping("/hospitals/new")
@@ -48,19 +48,6 @@ public class HospitalController {
         List<Hospital> hospitals = hospitalRepository.findAll();
         model.addAttribute("hospitals", hospitals);
 
-        return "/hospitals/hospitalsList";
-    }
-
-//   /hospitals/{id}/departments
-    @GetMapping("/hospitals/{hospitalId}/departments")
-    public String departments(@PathVariable("hospitalId") Long hospitalId, Model model) {
-        Hospital hospital = hospitalRepository.findOne(hospitalId);
-        List<Department> departments = departmentRepository.findAllByHospitalId(hospitalId);
-
-        model.addAttribute("hospitalName", hospital.getName());
-        model.addAttribute("hospitalId", hospitalId);
-        model.addAttribute("departments", departments);
-
-        return "/departments/home";
+        return "hospitals/hospitalsList";
     }
 }

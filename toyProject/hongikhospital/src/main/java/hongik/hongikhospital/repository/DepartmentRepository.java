@@ -19,6 +19,12 @@ public class DepartmentRepository {
         return department.getName();
     }
 
+    public String saveAndFlush(Department department) {
+        em.persist(department);
+        em.flush();
+        return department.getName();
+    }
+
     public Department findOneById(Long id) {
         return em.find(Department.class, id);
     }

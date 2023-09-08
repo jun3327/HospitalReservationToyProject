@@ -10,7 +10,7 @@
     <div class="jumbotron">
         <p th:text="${hospitalName} + ' 진료과'" class="lead"></p>
         <p>
-            <a class="btn btn-lg btn-dark" href="/departments/new">진료과 등록</a>
+            <a class="btn btn-lg btn-dark" th:href="@{/hospitals/{id}/departments/new (id=${hospitalId})}">진료과 등록</a>
         </p>
         <div>
             <table class="table table-striped">

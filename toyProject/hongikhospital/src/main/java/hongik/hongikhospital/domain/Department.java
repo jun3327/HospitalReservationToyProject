@@ -28,6 +28,14 @@ public class Department {
     @OneToMany(mappedBy = "department", cascade = CascadeType.ALL)
     private List<Doctor> doctors = new ArrayList<>();
 
+    public static Department create(String name, int phoneNumber) {
+        Department department = new Department();
+        department.setName(name);
+        department.setPhoneNumber(phoneNumber);
+
+        return department;
+    }
+
     //**연관관계 편의 메서드** --> 소속 병원 설정
     public void setHospital(Hospital hospital) {
         this.hospital = hospital;

@@ -1,9 +1,13 @@
 package hongik.hongikhospital.service;
 
 import hongik.hongikhospital.domain.Department;
+import hongik.hongikhospital.domain.Hospital;
+import hongik.hongikhospital.exception.DuplicateDepartmentException;
 import hongik.hongikhospital.exception.NoDepartmentException;
 import hongik.hongikhospital.repository.DepartmentRepository;
+import hongik.hongikhospital.repository.HospitalRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,21 +20,22 @@ import java.util.List;
 public class DepartmentService {
 
     private final DepartmentRepository departmentRepository;
-
+    private final HospitalRepository hospitalRepository;
     // 특정 병원의 진료과 등록
     @Transactional
-    public String join(Department department) {
-            // 중복 검사를 수행하고 중복이 없을 경우 저장
-            validateDuplicateDepartment(department);
-            return departmentRepository.save(department);
-    }
+    public String createOne(String name, int phoneNumber, Long hospitalId) {
 
-    private void validateDuplicateDepartment(Department department) {
-        // 병원 ID와 전화번호로 중복 검사
-        List<Department> departments = departmentRepository.findOneByHospitalIdAndPhoneNumber(department.getHospital().getId(), department.getPhoneNumber());
-        if (departments != null) {
-            throw new IllegalStateException("이미 존재하는 진료과입니다.");
+        Hospital hospital = hospitalRepository.findOne(hospitalId);
+        Department department = Department.create(name, phoneNumber);
+        department.setHospital(hospital);
+
+        try {
+            departmentRepository.saveAndFlush(department);
+        } catch (DataIntegrityViolationException e) {
+            throw new DuplicateDepartmentException("해당 진료과는 이미 존재합니다.");
         }
+
+        return department.getName();
     }
 
     //특정 병원의 진료과 모두 조회

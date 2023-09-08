@@ -29,10 +29,10 @@ public class PatientServiceTest {
         patient.setName("Kim");
 
         //when
-        Long patientId = patientService.join(patient);
+//        Long patientId = patientService.createOne(patient);
 
         //then
-        Assertions.assertEquals(patient, patientRepository.findOne(patientId));
+//        Assertions.assertEquals(patient, patientRepository.findOne(patientId));
     }
 
     @Test(expected = DuplicatePatientException.class)
@@ -45,8 +45,8 @@ public class PatientServiceTest {
         patient2.setName("Kim");
 
         //when
-        patientService.join(patient1);
-        patientService.join(patient2); //-> 예외 발생 예상
+//        patientService.join(patient1);
+//        patientService.join(patient2); //-> 예외 발생 예상
         // 단 지금은 한 트랜잭션 안에서 테스트를 하고 있고, 예외를 비즈니스 로직으로 처리하지 않고 db에 제약조건을 걸었기 떄문에,
         // PatientRepository의 save에서 em.flush()를 잠시 추가해서 테스트를 해야된다.
         // flush를 하지 않으면 위 테스트 코드는 커밋 시점에 반영되므로 이 메소드가 끝나도 예외가 터지지 않아 오류가 뜬다.

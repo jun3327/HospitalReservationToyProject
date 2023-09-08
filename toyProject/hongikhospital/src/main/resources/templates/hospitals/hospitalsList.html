@@ -18,6 +18,9 @@
                 <td th:text="${hospital.getName()}"></td>
                 <td th:text="${hospital.getAdrress().getCity()}"></td>
                 <td th:text="${hospital.getAdrress().getStreet()}"></td>
+                <td>
+                    <a class="btn btn-lg btn-dark" th:href="@{/hospitals/{id}/departments (id=${hospital.id})}">진료과</a>
+                </td>
             </tr>
             </tbody>
         </table>

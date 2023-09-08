@@ -19,7 +19,7 @@ public class DepartmentRepository {
         return department.getName();
     }
 
-    public Department findOne(Long id) {
+    public Department findOneById(Long id) {
         return em.find(Department.class, id);
     }
 
@@ -46,7 +46,7 @@ public class DepartmentRepository {
     }
 
     // 병원 ID와 전화번호로 진료과 조회
-    public List<Department> findByHospitalIdAndPhoneNumber(Long hospitalId, int phoneNumber) {
+    public List<Department> findOneByHospitalIdAndPhoneNumber(Long hospitalId, int phoneNumber) {
         return em.createQuery("select d from Department d where d.hospital.id = :hospitalId and d.phoneNumber = :phoneNumber", Department.class)
                 .setParameter("hospitalId", hospitalId)
                 .setParameter("phoneNumber", phoneNumber)

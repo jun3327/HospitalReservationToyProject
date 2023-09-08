@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header">
+    <title>Hello</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<div class="container">
+    <div th:replace="fragments/bodyHeader :: bodyHeader" />
+    <div class="jumbotron">
+        <p th:text="${hospitalName} + ' 진료과'" class="lead"></p>
+        <p>
+            <a class="btn btn-lg btn-dark" href="/departments/new">진료과 등록</a>
+        </p>
+        <div>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>진료과명</th>
+                    <th>전화번호</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="department : ${departments}">
+                    <td th:text="${department.getName()}"></td>
+                    <td th:text="${department.getPhoneNumber()}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div th:replace="fragments/footer :: footer" />
+</div> <!-- /container -->
+</body>
+</html>

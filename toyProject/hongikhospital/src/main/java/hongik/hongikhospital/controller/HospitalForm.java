@@ -10,9 +10,12 @@ import javax.validation.constraints.NotEmpty;
 @Setter
 public class HospitalForm {
 
-    @NotEmpty(message = "병원 이름은 필수 항목입니다")
+    @NotEmpty(message = "필수 입력 항목")
     private String name;
+
+    @NotEmpty(message = "필수 입력 항목")
     private String city;
+
+    @NotEmpty(message = "필수 입력 항목")
     private String street;
-    private String zipcode;
 }

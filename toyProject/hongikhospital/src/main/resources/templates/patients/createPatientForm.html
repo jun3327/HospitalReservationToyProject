@@ -22,14 +22,18 @@
         <div class="form-group">
             <label th:for="age">나이</label>
             <input type="text" th:field="*{age}" class="form-control"
-                   placeholder="나이를 입력하세요">
+                   placeholder="나이를 입력하세요"
+                   th:class="${#fields.hasErrors('age')}? 'form-control fieldError' : 'form-control'">
+            <p th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Incorrect date</p>
         </div>
         <div class="form-group">
             <label th:for="gender">성별</label>
-            <select th:field="*{gender}" class="form-control">
+            <select th:field="*{gender}" class="form-control" th:class="${#fields.hasErrors('gender')}? 'form-control fieldError' : 'form-control'">>
                 <option value="MAN">MAN</option>
                 <option value="WOMAN">WOMAN</option>
             </select>
+            <p th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}">Incorrect date</p>
+
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>

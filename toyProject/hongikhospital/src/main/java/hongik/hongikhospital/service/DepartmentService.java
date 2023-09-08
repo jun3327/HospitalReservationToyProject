@@ -27,7 +27,7 @@ public class DepartmentService {
 
     private void validateDuplicateDepartment(Department department) {
         // 병원 ID와 전화번호로 중복 검사
-        List<Department> departments = departmentRepository.findByHospitalIdAndPhoneNumber(department.getHospital().getId(), department.getPhoneNumber());
+        List<Department> departments = departmentRepository.findOneByHospitalIdAndPhoneNumber(department.getHospital().getId(), department.getPhoneNumber());
         if (departments != null) {
             throw new IllegalStateException("이미 존재하는 진료과입니다.");
         }

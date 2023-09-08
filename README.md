@@ -25,12 +25,14 @@ B612 백엔드 과제 (시작 시점: 김영한 스프링 입문, 핵심 기본�
 <img width="480" alt="image" src="https://github.com/jun3327/HospitalReservationToyProject/assets/121341289/48e88de2-f7f8-4b86-9d63-c5aa019a2397">
 
 ##### 4. hospital 도메인과 department 도메인 사이의 관계 상 어쩔 수 없이 hospital 컨트롤러에서 department 자원을 만질 수 밖에 없다. 그런데 url 경로, 컨트롤러 내부 처리 등등 한 컨트롤러에서 다른 자원을 다루는 건 가독성이 떨어진다고 생각했다. 그래서 어떤 방법이 있나 검색했는데, 스프링 MVC 기능 중 서버 내에서 사용 하는 forward 기능이 있다는 것을 알았다. forward로 hospital 컨트롤러에서 department 컨트롤러로 데이터를 전달하면 department 관련 동작들을 Get 하거나 Post할 때 온전히 department 컨트롤러에서 더 깔끔하게 처리할 수 있다.  
-##### 원래 코드: 
+##### 원래 코드:
+##### (hospital 컨트롤러)
 ##### <img width="575" alt="image" src="https://github.com/jun3327/HospitalReservationToyProject/assets/121341289/58390a8d-1d92-4167-bbed-2e01cd703448">
 
 #### forward 사용 코드:
 ##### (hospital 컨트롤러)
 ##### <img width="535" alt="image" src="https://github.com/jun3327/HospitalReservationToyProject/assets/121341289/ee698e86-de2e-4e93-a4df-45cc57aa2b2c">
+
 
 ##### (department 컨트롤러)
 ##### <img width="574" alt="image" src="https://github.com/jun3327/HospitalReservationToyProject/assets/121341289/66ea3621-4f0e-48ed-aab1-343d7223a404">

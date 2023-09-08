@@ -23,3 +23,5 @@ B612 백엔드 과제 (시작 시점: 김영한 스프링 입문, 핵심 기본�
 ##### 처음에는 try catch로 DataIntegrityViolationException를 서비스 계층에서 잡으려고 생 난리를 쳤는데, @Transanctional이 있는 서비스계층 메소드에 try catch를 백만번 적어 봤자 커밋 되는 시점 이전, 즉 메소드가 끝나기 전에는 db에 반영 되지 않으므로 try catch로 db관련 예외를 잡을 수 있을리가 없었다...즉 catch가 실행되지 않고 그 후에 예외가 터졌던 것.. controller에 서비스 계층의 예외를 넘기고 컨트롤러에서 에러메시지를 작성할 수도 있겠지만 관심사 분리 원칙에 따라 지양했다. 어쩔 수 없이 리포지토리에서 강제로 flush() 메소드를 추가해 예외를 처리했다.
 ##### 아래 코드는 PatientService 일부
 <img width="480" alt="image" src="https://github.com/jun3327/HospitalReservationToyProject/assets/121341289/48e88de2-f7f8-4b86-9d63-c5aa019a2397">
+
+##### 4. hospital 도메인과 department 도메인 사이의 관계 상 어쩔 수 없이 hospital 컨트롤러에서 department 자원을 만질 수 밖에 없다. 그런데 url 경로, 컨트롤러 내부 처리 등등 한 컨트롤러에서 다른 자원을 다루는 건 가독성이 떨어진다고 생각했다. 그래서 어떤 방법이 있나 검색했는데, 스프링 MVC 기능 중 서버 내에서 사용 하는 forward 기능이 있다는 것을 알았다. forward로 hospital 컨트롤러에서 department 컨트롤러로 데이터를 전달하면 department 관련 동작들을 Get 하거나 Post할 때 온전히 department 컨트롤러에서 더 깔끔하게 처리할 수 있다.  

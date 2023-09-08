@@ -1,6 +1,7 @@
 package hongik.hongikhospital.controller;
 
 import hongik.hongikhospital.domain.Address;
+import hongik.hongikhospital.domain.Hospital;
 import hongik.hongikhospital.repository.HospitalRepository;
 import hongik.hongikhospital.service.HospitalService;
 import lombok.RequiredArgsConstructor;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -32,9 +34,16 @@ public class HospitalController {
         }
 
         hospitalService.createOne(form.getName(), form.getCity(),
-                form.getStreet(), form.getZipcode());
+                form.getStreet());
 
         return "redirect:/";
+    }
 
+    @GetMapping("/hospitals")
+    public String hospitals(Model model) {
+        List<Hospital> hospitals = hospitalRepository.findAll();
+        model.addAttribute("hospitals", hospitals);
+
+        return "/hospitals/hospitalsList";
     }
 }

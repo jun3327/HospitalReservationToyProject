@@ -19,7 +19,7 @@ import java.util.List;
 public class PatientService {
 
     private final PatientRepository patientRepository;
-    private final EntityManager em;
+
     //환자 생성, 중복 검증
     @Transactional
     public Long createOne(String name, int age, Gender gender) {

@@ -42,8 +42,9 @@ public class HospitalService {
 
     //병원 생성
     @Transactional
-    public Long createOne(String name, String city, String street, String zipcode) {
-        Hospital hospital = Hospital.createHospital(name, city, street, zipcode);
+    public Long createOne(String name, String city, String street) {
+        Hospital hospital = Hospital.createHospital(name, city, street);
+
         try {
             hospitalRepository.saveAndFlush(hospital);
         } catch (DataIntegrityViolationException e) {

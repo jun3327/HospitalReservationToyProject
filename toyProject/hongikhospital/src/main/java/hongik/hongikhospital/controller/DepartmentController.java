@@ -46,9 +46,9 @@ public class DepartmentController {
     }
 
     @PostMapping("/new")
-    public String create(@Valid DepartmentForm form
-            , @PathVariable("hospitalId") Long hospitalId
-            , BindingResult result) {
+    public String create(@Valid DepartmentForm form,
+                         @PathVariable("hospitalId") Long hospitalId,
+                         BindingResult result) {
 
         if (result.hasErrors()) {
             return "departments/createDepartmentForm";

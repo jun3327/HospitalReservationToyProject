@@ -16,13 +16,13 @@ public class DoctorService {
 
     private final DoctorRepository doctorRepository;
 
-    //의사 등록
-    @Transactional
-    public Long join(Doctor doctor, Department department) {
-        validateDuplicateDoctor(doctor, department.getPhoneNumber());
-        doctorRepository.save(doctor);
-        return doctor.getId();
-    }
+//    //의사 등록
+//    @Transactional
+//    public Long join(Doctor doctor, Department department) {
+//        validateDuplicateDoctor(doctor, department.getPhoneNumber());
+//        doctorRepository.save(doctor);
+//        return doctor.getId();
+//    }
 
     private void validateDuplicateDoctor(Doctor doctor, int number) {
         List<Doctor> doctors = doctorRepository.findOneByNameAndDepartmentPhone(doctor.getName(), number);

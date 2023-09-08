@@ -1,5 +1,6 @@
 package hongik.hongikhospital.domain;
 
+import hongik.hongikhospital.repository.HospitalRepository;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -15,11 +16,14 @@ import java.util.List;
 public class Department {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     @Column(name = "department_name")
     private String name;
 
     @Column(unique = true)
-    private int phoneNumber;
+    private String phoneNumber;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "hospital_id")
@@ -28,10 +32,12 @@ public class Department {
     @OneToMany(mappedBy = "department", cascade = CascadeType.ALL)
     private List<Doctor> doctors = new ArrayList<>();
 
-    public static Department create(String name, int phoneNumber) {
+    public static Department create(String name, String phoneNumber, Hospital hospital) {
+
         Department department = new Department();
         department.setName(name);
         department.setPhoneNumber(phoneNumber);
+        department.setHospital(hospital);
 
         return department;
     }

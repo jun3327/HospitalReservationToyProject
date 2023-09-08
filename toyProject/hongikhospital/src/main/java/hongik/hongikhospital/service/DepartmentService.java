@@ -21,13 +21,12 @@ public class DepartmentService {
 
     private final DepartmentRepository departmentRepository;
     private final HospitalRepository hospitalRepository;
-    // 특정 병원의 진료과 등록
+
     @Transactional
-    public String createOne(String name, int phoneNumber, Long hospitalId) {
+    public String createOne(String name, String phoneNumber, Long hospitalId) {
 
         Hospital hospital = hospitalRepository.findOne(hospitalId);
-        Department department = Department.create(name, phoneNumber);
-        department.setHospital(hospital);
+        Department department = Department.create(name, phoneNumber, hospital);
 
         try {
             departmentRepository.saveAndFlush(department);

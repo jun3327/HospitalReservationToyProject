@@ -4,7 +4,9 @@ import hongik.hongikhospital.domain.Department;
 import hongik.hongikhospital.domain.Doctor;
 import hongik.hongikhospital.domain.Hospital;
 import hongik.hongikhospital.exception.DuplicateDoctorException;
+import hongik.hongikhospital.repository.DepartmentRepository;
 import hongik.hongikhospital.repository.DoctorRepository;
+import hongik.hongikhospital.repository.HospitalRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
@@ -18,12 +20,18 @@ import java.util.List;
 public class DoctorService {
 
     private final DoctorRepository doctorRepository;
+    private final HospitalRepository hospitalRepository;
+    private final DepartmentRepository departmentRepository;
 
     //의사 등록
     @Transactional
-    public Long createOne(Hospital hospital, Department department, String name, int career) {
+    public Long createOne(Long hospitalId, Long departmentId, String name, int career) {
+
+        Hospital hospital = hospitalRepository.findOne(hospitalId);
+        Department department = departmentRepository.findOne(departmentId);
 
         Doctor doctor = Doctor.create(hospital, department, name, career);
+
         try {
             doctorRepository.saveAndFlush(doctor);
         } catch(DataIntegrityViolationException e) {

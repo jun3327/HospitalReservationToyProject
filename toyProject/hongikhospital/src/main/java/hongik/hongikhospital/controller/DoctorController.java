@@ -24,10 +24,7 @@ import java.util.List;
 
 public class DoctorController {
 
-    private final HospitalService hospitalService;
-    private final DepartmentService departmentService;
     private final DoctorService doctorService;
-
 
     @GetMapping("")
     public String doctors(@PathVariable("hospitalId") Long hospitalId,
@@ -55,15 +52,11 @@ public class DoctorController {
                          @PathVariable("departmentId") Long departmentId,
                          @Valid DoctorForm form,
                          BindingResult result) {
-
         if (result.hasErrors()) {
             return "doctors/createDoctorForm";
         }
 
-        Hospital hospital = hospitalService.findOne(hospitalId);
-        Department department = departmentService.findOne(departmentId);
-
-        doctorService.createOne(hospital, department, form.getName(), form.getCareer());
+        doctorService.createOne(hospitalId, departmentId, form.getName(), form.getCareer());
 
         return "redirect:/hospitals/{hospitalId}/departments";
     }

@@ -16,8 +16,8 @@
             <tbody>
             <tr th:each="hospital : ${hospitals}">
                 <td th:text="${hospital.getName()}"></td>
-                <td th:text="${hospital.getAdrress().getCity()}"></td>
-                <td th:text="${hospital.getAdrress().getStreet()}"></td>
+                <td th:text="${hospital.getAddress().getCity()}"></td>
+                <td th:text="${hospital.getAddress().getStreet()}"></td>
                 <td>
                     <a class="btn btn-lg btn-dark" th:href="@{/hospitals/{id}/departments (id=${hospital.id})}">진료과목록</a>
                 </td>

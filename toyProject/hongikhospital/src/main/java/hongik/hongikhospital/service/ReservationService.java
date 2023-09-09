@@ -1,6 +1,7 @@
 package hongik.hongikhospital.service;
 
 import hongik.hongikhospital.domain.*;
+import hongik.hongikhospital.exception.DuplicateReserveException;
 import hongik.hongikhospital.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -48,8 +49,7 @@ public class ReservationService {
         ReserveStatus status = ReserveStatus.RESERVE;
         List<Reservation> duplicateReservation = reservationRepository.findDuplicateReservation(doctorId, patientId, status);
         if( !duplicateReservation.isEmpty() ) {
-            throw new IllegalStateException("같은 의사에게 하나의 예약만 할 수 있습니다");
+            throw new DuplicateReserveException("같은 의사에게 하나의 예약만 할 수 있습니다");
         }
-
     }
 }

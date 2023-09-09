@@ -16,6 +16,7 @@
             <select name="patientId" class="form-control">
                 <option th:each="patient : ${patients}" th:value="${patient.id}" th:text="${patient.name}"></option>
             </select>
+            <p th:if="${errorMessage}" class="text-danger" th:text="${errorMessage}"></p>
         </div>
 
         <button type="submit" class="btn btn-primary">예약</button>

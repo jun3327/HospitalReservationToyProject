@@ -33,4 +33,10 @@ public class GlobalExceptionHandler {
         redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
         return "redirect:/hospitals/{hospitalId}/departments/{departmentId}/doctors/new";
     }
+
+    @ExceptionHandler(DuplicateReserveException.class)
+    public String handleDuplicateReserveException(DuplicateReserveException e, RedirectAttributes redirectAttributes) {
+        redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
+        return "redirect:/hospitals/{hospitalId}/departments/{departmentId}/doctors/{doctorId}/reserve";
+    }
 }

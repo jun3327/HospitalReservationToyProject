@@ -32,6 +32,15 @@ public class Doctor {
     @JoinColumn(name = "hospital_id")
     private Hospital hospital;
 
+    public static Doctor create(Hospital hospital, Department department, String name, int career) {
+        Doctor doctor = new Doctor();
+        doctor.setHospital(hospital);
+        doctor.setDepartment(department);
+        doctor.setName(name);
+        doctor.setCareer(career);
+
+        return doctor;
+    }
     //연관관계 편의 메서드 --> 소속 병원, 진료과 설정
     public void setHospital(Hospital hospital) {
         this.hospital = hospital;

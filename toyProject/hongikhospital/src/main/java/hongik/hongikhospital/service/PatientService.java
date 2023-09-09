@@ -35,7 +35,7 @@ public class PatientService {
     }
 
     //환자 전체 조회a
-    public List<Patient> findPatients() {
+    public List<Patient> findAll() {
          return patientRepository.findAll();
     }
 

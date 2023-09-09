@@ -27,4 +27,10 @@ public class GlobalExceptionHandler {
         redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
         return "redirect:/hospitals/{hospitalId}/departments/new";
     }
+
+    @ExceptionHandler(DuplicateDoctorException.class)
+    public String handleDuplicateDoctorException(DuplicateDoctorException e, RedirectAttributes redirectAttributes) {
+        redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
+        return "redirect:/hospitals/{hospitalId}/departments/{departmentId}/doctors/new";
+    }
 }

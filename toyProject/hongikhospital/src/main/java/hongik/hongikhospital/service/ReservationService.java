@@ -1,9 +1,7 @@
 package hongik.hongikhospital.service;
 
 import hongik.hongikhospital.domain.*;
-import hongik.hongikhospital.repository.DoctorRepository;
-import hongik.hongikhospital.repository.PatientRepository;
-import hongik.hongikhospital.repository.ReservationRepository;
+import hongik.hongikhospital.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,11 +16,15 @@ public class ReservationService {
     private final ReservationRepository reservationRepository;
     private final PatientRepository patientRepository;
     private final DoctorRepository doctorRepository;
+    private final HospitalRepository hospitalRepository;
+    private final DepartmentRepository departmentRepository;
 
     @Transactional
-    public Long reserve(Long doctorId, Long patientId) {
+    public Long createOne(Long hospitalId, Long departmentId, Long doctorId, Long patientId) {
 
         //엔티티 조회
+        Hospital hospital = hospitalRepository.findOne(hospitalId);
+        Department department = departmentRepository.findOne(departmentId);
         Patient patient = patientRepository.findOne(patientId);
         Doctor doctor = doctorRepository.findOne(doctorId);
 
@@ -30,7 +32,7 @@ public class ReservationService {
         validateDuplicateReservation(doctor.getId(), patient.getId());
 
         //예약 생성
-        Reservation reservation = Reservation.createReservation(doctor, patient);
+        Reservation reservation = Reservation.createReservation(hospital, department, doctor, patient);
 
         //예약 저장
         reservationRepository.save(reservation);

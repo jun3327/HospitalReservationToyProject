@@ -21,9 +21,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class HospitalController {
 
-    private final HospitalRepository hospitalRepository;
     private final HospitalService hospitalService;
-    private final DepartmentRepository departmentRepository;
 
     @GetMapping("/hospitals/new")
     public String createHospitalForm(Model model) {
@@ -45,7 +43,7 @@ public class HospitalController {
 
     @GetMapping("/hospitals")
     public String hospitals(Model model) {
-        List<Hospital> hospitals = hospitalRepository.findAll();
+        List<Hospital> hospitals = hospitalService.findAll();
         model.addAttribute("hospitals", hospitals);
 
         return "hospitals/hospitalsList";

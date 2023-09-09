@@ -19,6 +19,13 @@ public class DoctorRepository {
         return doctor.getId();
     }
 
+    public Long saveAndFlush(Doctor doctor) {
+        em.persist(doctor);
+        em.flush();
+
+        return doctor.getId();
+    }
+
     public Doctor findOne(Long id) {
         return em.find(Doctor.class, id);
     }

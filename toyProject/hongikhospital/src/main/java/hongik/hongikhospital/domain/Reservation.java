@@ -75,15 +75,16 @@ public class Reservation {
     /**
      * 예약 생성
      */
-    public static Reservation createReservation(Doctor doctor, Patient patient) {
+    public static Reservation createReservation(Hospital hospital, Department department,
+                                                Doctor doctor, Patient patient) {
 
         Reservation reservation = new Reservation();
 
         reservation.setReserveTime(LocalDateTime.now());
         reservation.setDoctor(doctor);
+        reservation.setHospital(hospital);
+        reservation.setDepartment(department);
         reservation.setPatient(patient);
-        reservation.setDepartment(doctor.getDepartment());
-        reservation.setHospital(doctor.getHospital());
         reservation.setReserveStatus(ReserveStatus.RESERVE);
 
         return reservation;

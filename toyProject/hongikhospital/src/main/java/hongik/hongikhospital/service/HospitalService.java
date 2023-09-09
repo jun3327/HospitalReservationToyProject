@@ -33,7 +33,7 @@ public class HospitalService {
     }
 
     //모든 병원 조회
-    public List<Hospital> findHospitals() {
+    public List<Hospital> findAll() {
         return hospitalRepository.findAll();
     }
 

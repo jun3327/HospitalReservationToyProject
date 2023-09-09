@@ -1,5 +1,5 @@
-# *HospitalReservationToyProject
-B612 백엔드 과제 (시작 시점: 김영한 스프링 입문, 핵심 기본원리, 스프링부트 활용편 1 완강 후)
+# 병원예약 토이프로젝트
+B612 백엔드 과제
 
 ## *Requirements
 <img width="606" alt="홍익병원 요구사항" src="https://github.com/jun3327/HospitalReservationToyProject/assets/121341289/a9b190f5-1df3-4f78-893b-a559f209a252">

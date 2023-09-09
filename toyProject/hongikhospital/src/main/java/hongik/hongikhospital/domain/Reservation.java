@@ -12,7 +12,6 @@ import java.util.List;
 
 @Entity
 @Getter
-@Setter
 public class Reservation {
 
     @Id
@@ -43,33 +42,6 @@ public class Reservation {
 
     private ReserveStatus reserveStatus; // RESERVE, CANCEL, TREAT
 
-    //**연관관계 편의 메서드**
-
-    public void setPatient(Patient patient) {
-        this.patient = patient;
-        patient.getReservations().add(this);
-    }
-
-    public void setHospital(Hospital hospital) {
-        this.hospital = hospital;
-        hospital.getReservations().add(this);
-    }
-
-    public void setDepartment(Department department) {
-        this.department = department;
-//        department.getReservations().add(this); -->진료과에서 예약정보 조회를 굳이 할 필요가 없을듯
-    }
-
-    public void setDoctor(Doctor doctor) {
-        this.doctor = doctor;
-        doctor.getReservations().add(this);
-    }
-
-    public void setDiagnosisInfo(DiagnosisInfo diagnosisInfo) {
-        this.diagnosisInfo = diagnosisInfo;
-        diagnosisInfo.setReservation(this);
-    }
-
     //**비즈니스 로직**
 
     /**
@@ -80,14 +52,36 @@ public class Reservation {
 
         Reservation reservation = new Reservation();
 
-        reservation.setReserveTime(LocalDateTime.now());
+        reservation.reserveTime = LocalDateTime.now();
+        reservation.reserveStatus = ReserveStatus.RESERVE;
+        reservation.department = department;
         reservation.setDoctor(doctor);
         reservation.setHospital(hospital);
-        reservation.setDepartment(department);
         reservation.setPatient(patient);
-        reservation.setReserveStatus(ReserveStatus.RESERVE);
 
         return reservation;
 
+    }
+
+    //**연관관계 편의 메서드**
+
+    private void setPatient(Patient patient) {
+        this.patient = patient;
+        patient.getReservations().add(this);
+    }
+
+    private void setHospital(Hospital hospital) {
+        this.hospital = hospital;
+        hospital.getReservations().add(this);
+    }
+
+    private void setDoctor(Doctor doctor) {
+        this.doctor = doctor;
+        doctor.getReservations().add(this);
+    }
+
+    private void setDiagnosisInfo(DiagnosisInfo diagnosisInfo) {
+        this.diagnosisInfo = diagnosisInfo;
+        diagnosisInfo.reservation = this;
     }
 }

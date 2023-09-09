@@ -9,7 +9,6 @@ import java.util.List;
 
 @Entity
 @Getter
-@Setter
 public class Patient {
 
     @Id
@@ -32,9 +31,9 @@ public class Patient {
     public static Patient createPatient(String name, int age, Gender gender) {
 
         Patient patient = new Patient();
-        patient.setName(name);
-        patient.setAge(age);
-        patient.setGender(gender);
+        patient.name = name;
+        patient.age = age;
+        patient.gender = gender;
 
         return patient;
     }

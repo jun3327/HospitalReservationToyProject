@@ -9,7 +9,6 @@ import java.util.List;
 
 @Entity
 @Getter
-@Setter
 public class Doctor {
 
     @Id
@@ -36,18 +35,18 @@ public class Doctor {
         Doctor doctor = new Doctor();
         doctor.setHospital(hospital);
         doctor.setDepartment(department);
-        doctor.setName(name);
-        doctor.setCareer(career);
+        doctor.name = name;
+        doctor.career = career;
 
         return doctor;
     }
     //연관관계 편의 메서드 --> 소속 병원, 진료과 설정
-    public void setHospital(Hospital hospital) {
+    private void setHospital(Hospital hospital) {
         this.hospital = hospital;
         hospital.getDoctors().add(this);
     }
 
-    public void setDepartment(Department department){
+    private void setDepartment(Department department){
         this.department = department;
         department.getDoctors().add(this);
     }

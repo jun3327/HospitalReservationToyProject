@@ -12,7 +12,6 @@ import java.util.List;
 
 @Entity
 @Getter
-@Setter
 public class Department {
 
     @Id
@@ -35,15 +34,15 @@ public class Department {
     public static Department create(String name, String phoneNumber, Hospital hospital) {
 
         Department department = new Department();
-        department.setName(name);
-        department.setPhoneNumber(phoneNumber);
+        department.name = name;
+        department.phoneNumber = phoneNumber;
         department.setHospital(hospital);
 
         return department;
     }
 
     //**연관관계 편의 메서드** --> 소속 병원 설정
-    public void setHospital(Hospital hospital) {
+    private void setHospital(Hospital hospital) {
         this.hospital = hospital;
         hospital.getDepartments().add(this);
     }

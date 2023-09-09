@@ -9,7 +9,6 @@ import java.util.List;
 
 @Entity
 @Getter
-@Setter
 public class Hospital {
 
     @Id
@@ -21,7 +20,7 @@ public class Hospital {
     private String name;
 
     @Embedded
-    private Address adrress;
+    private Address address;
 
     @OneToMany(mappedBy = "hospital", cascade = CascadeType.ALL)
     private List<Department> departments = new ArrayList<>();
@@ -36,8 +35,8 @@ public class Hospital {
         Hospital hospital = new Hospital();
         Address address = new Address(city, street);
 
-        hospital.setName(name);
-        hospital.setAdrress(address);
+        hospital.name = name;
+        hospital.address = address;
 
         return hospital;
     }

@@ -7,7 +7,6 @@ import javax.persistence.*;
 
 @Entity
 @Getter
-@Setter
 public class DiagnosisInfo {
 
     @Id
@@ -19,5 +18,5 @@ public class DiagnosisInfo {
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "reservation_id")
-    private Reservation reservation;
+    Reservation reservation;
 }

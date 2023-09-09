@@ -2,9 +2,11 @@ package hongik.hongikhospital.controller;
 
 import hongik.hongikhospital.domain.Department;
 import hongik.hongikhospital.domain.Hospital;
+import hongik.hongikhospital.domain.Reservation;
 import hongik.hongikhospital.service.DepartmentService;
 import hongik.hongikhospital.service.HospitalService;
 import hongik.hongikhospital.service.PatientService;
+import hongik.hongikhospital.service.ReservationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,8 +25,8 @@ import java.util.List;
 public class DepartmentController {
 
     private final DepartmentService departmentService;
-    private final PatientService patientService;
     private final HospitalService hospitalService;
+    private final ReservationService reservationService;
 
     @GetMapping("")
     public String departments(@PathVariable("hospitalId") Long hospitalId, Model model) {
@@ -57,5 +59,13 @@ public class DepartmentController {
         departmentService.createOne(form.getName(), form.getPhoneNumber(), hospitalId);
 
         return "redirect:/hospitals/{hospitalId}/departments";
+    }
+
+    @GetMapping("/{departmentId}/reserveList")
+    public String reserveList(@PathVariable("departmentId") Long departmentId,
+                              Model model) {
+        List<Reservation> reservations = reservationService.findAllByDepartment(departmentId);
+        model.addAttribute("reservations", reservations);
+        return "/departments/reserveList";
     }
 }

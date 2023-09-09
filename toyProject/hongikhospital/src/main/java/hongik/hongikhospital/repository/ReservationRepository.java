@@ -36,4 +36,9 @@ public class ReservationRepository {
                 .getResultList();
     }
 
+    public List<Reservation> findAllByDepartmentId(Long departmentId) {
+        return em.createQuery("select r from Reservation r where r.department.id= :departmentId", Reservation.class)
+                .setParameter("departmentId", departmentId)
+                .getResultList();
+    }
 }

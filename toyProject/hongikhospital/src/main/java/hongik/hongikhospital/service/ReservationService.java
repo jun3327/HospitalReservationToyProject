@@ -40,6 +40,10 @@ public class ReservationService {
         return reservation.getId();
     }
 
+    public List<Reservation> findAllByDepartment(Long departmentId) {
+        return reservationRepository.findAllByDepartmentId(departmentId);
+    }
+
     public void validateDuplicateReservation(Long doctorId, Long patientId) {
         ReserveStatus status = ReserveStatus.RESERVE;
         List<Reservation> duplicateReservation = reservationRepository.findDuplicateReservation(doctorId, patientId, status);

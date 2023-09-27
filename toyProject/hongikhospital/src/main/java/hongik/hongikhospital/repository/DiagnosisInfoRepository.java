@@ -22,5 +22,4 @@ public class DiagnosisInfoRepository {
         return em.find(DiagnosisInfo.class, id);
     }
 
-
 }

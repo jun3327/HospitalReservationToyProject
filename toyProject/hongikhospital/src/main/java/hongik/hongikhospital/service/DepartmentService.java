@@ -47,23 +47,4 @@ public class DepartmentService {
         return departmentRepository.findAllByHospitalId(hospitalId);
     }
 
-    //특정 병원의 특정 진료과 조회
-    public Department findDepartmentByDepartmentIdAndHospitalId(Long departmentId, Long hospitalId) {
-        try {
-            return departmentRepository.findOneByDepartmentIdAndHospitalId(departmentId, hospitalId);
-        } catch (NoResultException e) {
-            String errorMessage = "찾으시는 진료과 정보가 존재하지 않습니다. 다시 입력해주세요.";
-            throw new NoDepartmentException(errorMessage);
-        }
-    }
-
-    //전화번호로 조회
-    public Department findDepartmentByPhoneNumber(Long phoneNumber) {
-        try {
-            return departmentRepository.findOneByPhoneNumber(phoneNumber);
-        } catch (NoResultException e) {
-            String errorMessage = "찾으시는 진료과 정보가 존재하지 않습니다. 다시 입력해주세요.";
-            throw new NoDepartmentException(errorMessage);
-        }
-    }
 }

@@ -33,11 +33,4 @@ public class HospitalRepository {
         return em.createQuery("select h from Hospital h", Hospital.class)
                 .getResultList();
     }
-
-    public List<Hospital> findByName(String name) {
-        return em.createQuery("select h from Hospital h where h.name:name", Hospital.class)
-                .setParameter("name", name)
-                .getResultList();
-    }
-
 }

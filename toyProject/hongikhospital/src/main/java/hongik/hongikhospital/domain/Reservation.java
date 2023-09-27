@@ -80,8 +80,8 @@ public class Reservation {
         doctor.getReservations().add(this);
     }
 
-    private void setDiagnosisInfo(DiagnosisInfo diagnosisInfo) {
-        this.diagnosisInfo = diagnosisInfo;
-        diagnosisInfo.reservation = this;
-    }
+//    private void setDiagnosisInfo(DiagnosisInfo diagnosisInfo) {
+//        this.diagnosisInfo = diagnosisInfo;
+//        diagnosisInfo.reservation = this;
+//    }
 }

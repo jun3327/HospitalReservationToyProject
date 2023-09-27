@@ -5,7 +5,6 @@ import hongik.hongikhospital.domain.Hospital;
 import hongik.hongikhospital.domain.Reservation;
 import hongik.hongikhospital.service.DepartmentService;
 import hongik.hongikhospital.service.HospitalService;
-import hongik.hongikhospital.service.PatientService;
 import hongik.hongikhospital.service.ReservationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;

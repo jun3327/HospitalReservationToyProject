@@ -29,7 +29,7 @@ public class ReservationRepository {
     }
 
     public List<Reservation> findDuplicateReservation(Long doctorId, Long patientId, ReserveStatus status) {
-        return em.createQuery("select r from Reservation r where r.doctor.id= :doctorId and r.patient.id= :patientId and r.reserveStatus= :status", Reservation.class)
+        return em.createQuery("select r from Reservation r left join fetch r.diagnosisInfo where r.doctor.id= :doctorId and r.patient.id= :patientId and r.reserveStatus= :status", Reservation.class)
                 .setParameter("doctorId", doctorId)
                 .setParameter("patientId", patientId)
                 .setParameter("status", status)
@@ -37,7 +37,7 @@ public class ReservationRepository {
     }
 
     public List<Reservation> findAllByDepartmentId(Long departmentId) {
-        return em.createQuery("select r from Reservation r where r.department.id= :departmentId", Reservation.class)
+        return em.createQuery("select r from Reservation r left join fetch r.diagnosisInfo where r.department.id= :departmentId", Reservation.class)
                 .setParameter("departmentId", departmentId)
                 .getResultList();
     }

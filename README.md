@@ -48,5 +48,5 @@
 5. OneToONe 양방향 관계에서 각각의 엔티티에 서로 지연로딩 전략을 사용했음에도, 연관관계의 주인이 아닌 쪽의 엔티티를 db에서 조회하면 다른 엔티티도 select하는 쿼리가 나가는 N+1 문제 발생.. Reservation과 DiagnosisInfo 엔티티가 서로 일대일 양방향 관계이고 연관관계의 주인을 DiagnosisInfo로 설정해놨는데, Reservation을 select하는 jpql문을 실행하면 Reservation 테이블을 select하고 후에 DiagnosisInfo 테이블도 select해버린다
 ![image](https://github.com/jun3327/HospitalReservationToyProject/assets/121341289/0e6b4da6-6e63-4357-ad24-97e0443d6303)
 - 이유: 데이터베이스에서 연관관계의 주인이 아닌 쪽의 테이블에서는 주인 테이블의 식별자에 해당하는 column을 갖고 있지 않다. 객체세상에서 양방향이라고 하더라도 DB테이블 입장에서는 한 쪽에만 FK가 있으면 양쪽으로 join 가능해서 상관없기 때문이다. 중요한 점은 지연로딩 전략이 프록시를 사용하는데, 상대방 엔티티가 null 값이 가능한 상황에서 해당 값을 프록시로 감싸는 것은 불가능하다(프록시 기능의 한계). Reservation 입장에서는 DiagnosisInfo 테이블에 대한 Pk나 정보가 없기 때문에 DiangnosisInfo에 대응시킬 프록시를 생성하기 전에 그게 null인지 아닌지부터 확인해야한다. 그래서 DiagnosisInfo를 select하는 쿼리가 추가적으로 나가는 것이다.
-- 근데 OneToMany나 ManyToOne 의 One에서는 지연로딩이 잘 동작한다. 이유는 Many에 해당하는 쪽을 컬렉션을 사용하기 때문에(빈 컬렉션과 null 상태는 다르다), 연관관계 사이가 non-null이며 프록시 객체를 생성할 수 있기 때문이다.
+- 근데 OneToMany나 ManyToOne 의 One에서는 지연로딩이 잘 동작한다. 이유는 Many에 해당하는 쪽을 컬렉션을 사용해서 초기화 하기 때문에(설령 컬렉션이 비어있어도 빈 컬렉션과 null 상태는 다르다), 연관관계 사이가 non-null이며 프록시 객체를 생성할 수 있기 때문이다.
 - 해결: optional = false 조건을 걸어서 null 값이 아님을 제약조건으로 걸어서 시도했는데 왜 안되는지 모르겠고,, 그래서 그냥 fetch join으로 한꺼번에 가져왔다.

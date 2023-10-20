@@ -1,8 +1,7 @@
 package hongik.hongikhospital.domain;
 
+import jakarta.persistence.Embeddable;
 import lombok.Getter;
-
-import javax.persistence.Embeddable;
 
 @Embeddable
 @Getter

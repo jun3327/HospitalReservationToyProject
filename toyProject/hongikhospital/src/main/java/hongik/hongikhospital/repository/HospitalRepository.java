@@ -4,8 +4,8 @@ import hongik.hongikhospital.domain.Hospital;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.Entity;
-import javax.persistence.EntityManager;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EntityManager;
 import java.util.List;
 
 @Repository

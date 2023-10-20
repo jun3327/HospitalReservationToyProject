@@ -2,10 +2,10 @@ package hongik.hongikhospital.repository;
 
 import hongik.hongikhospital.domain.Reservation;
 import hongik.hongikhospital.domain.ReserveStatus;
+import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.EntityManager;
 import java.util.List;
 
 @Repository

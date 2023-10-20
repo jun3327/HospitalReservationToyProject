@@ -1,12 +1,7 @@
 package hongik.hongikhospital.domain;
 
-import hongik.hongikhospital.repository.HospitalRepository;
+import jakarta.persistence.*;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-
-import javax.persistence.*;
-import javax.print.Doc;
 import java.util.ArrayList;
 import java.util.List;
 

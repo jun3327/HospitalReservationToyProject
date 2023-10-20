@@ -1,11 +1,9 @@
 package hongik.hongikhospital.repository;
 
 import hongik.hongikhospital.domain.DiagnosisInfo;
+import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
-
-import javax.persistence.EntityManager;
-import javax.swing.text.html.parser.Entity;
 
 @Repository
 @RequiredArgsConstructor

@@ -2,9 +2,7 @@ package hongik.hongikhospital.service;
 
 import hongik.hongikhospital.domain.Department;
 import hongik.hongikhospital.domain.Hospital;
-import hongik.hongikhospital.domain.Patient;
 import hongik.hongikhospital.exception.DuplicateDepartmentException;
-import hongik.hongikhospital.exception.NoDepartmentException;
 import hongik.hongikhospital.repository.DepartmentRepository;
 import hongik.hongikhospital.repository.HospitalRepository;
 import lombok.RequiredArgsConstructor;

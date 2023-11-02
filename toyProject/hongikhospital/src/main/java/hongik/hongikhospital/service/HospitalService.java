@@ -1,16 +1,15 @@
 package hongik.hongikhospital.service;
 
-import hongik.hongikhospital.domain.Address;
 import hongik.hongikhospital.domain.Hospital;
 import hongik.hongikhospital.exception.DuplicateHospitalException;
-import hongik.hongikhospital.exception.DuplicatePatientException;
 import hongik.hongikhospital.repository.HospitalRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
+
+import static java.util.stream.Collectors.toList;
 
 @Service
 @RequiredArgsConstructor
@@ -33,13 +32,18 @@ public class HospitalService {
     }
 
     //모든 병원 조회
-    public List<Hospital> findAll() {
-        return hospitalRepository.findAll();
+    public List<HospitalDto> findAll() {
+        List<Hospital> hospitals = hospitalRepository.findAll();
+        List<HospitalDto> result = hospitals.stream()
+                .map(h -> new HospitalDto(h))
+                .collect(toList());
+
+        return result;
     }
 
-    //특정 이름 병원 조회
-    public Hospital findOne(Long hospitalId) {
-        return hospitalRepository.findOne(hospitalId);
+    //특정 병원 조회
+    public HospitalDto findOne(Long hospitalId) {
+        return new HospitalDto(hospitalRepository.findOne(hospitalId));
     }
 
 }

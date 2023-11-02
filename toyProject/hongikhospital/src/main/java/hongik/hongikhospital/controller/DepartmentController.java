@@ -4,6 +4,7 @@ import hongik.hongikhospital.domain.Department;
 import hongik.hongikhospital.domain.Hospital;
 import hongik.hongikhospital.domain.Reservation;
 import hongik.hongikhospital.service.DepartmentService;
+import hongik.hongikhospital.service.HospitalDto;
 import hongik.hongikhospital.service.HospitalService;
 import hongik.hongikhospital.service.ReservationService;
 import jakarta.validation.Valid;
@@ -30,9 +31,9 @@ public class DepartmentController {
     @GetMapping("")
     public String departments(@PathVariable("hospitalId") Long hospitalId, Model model) {
 
-        Hospital hospital = hospitalService.findOne(hospitalId);
+        HospitalDto hospitalDto = hospitalService.findOne(hospitalId);
         List<Department> departments = departmentService.findDepartmentsByHospitalId(hospitalId);
-        model.addAttribute("hospitalName", hospital.getName());
+        model.addAttribute("hospitalName", hospitalDto.getName());
         model.addAttribute("hospitalId", hospitalId);
         model.addAttribute("departments", departments);
 

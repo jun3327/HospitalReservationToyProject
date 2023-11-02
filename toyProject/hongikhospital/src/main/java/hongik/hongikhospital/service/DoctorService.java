@@ -45,10 +45,6 @@ public class DoctorService {
         return doctorRepository.findOne(id);
     }
 
-    public List<Doctor> findAll() {
-       return doctorRepository.findAll();
-    }
-
     //특정 병원의 특정 진료과에 속하는 의사 조회
     public List<Doctor> findDoctorsByDepartmentId(Long id) {
         return doctorRepository.findAllByDepartmentId(id);

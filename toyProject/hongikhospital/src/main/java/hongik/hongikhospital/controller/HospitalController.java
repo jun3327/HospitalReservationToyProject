@@ -5,6 +5,7 @@ import hongik.hongikhospital.domain.Department;
 import hongik.hongikhospital.domain.Hospital;
 import hongik.hongikhospital.repository.DepartmentRepository;
 import hongik.hongikhospital.repository.HospitalRepository;
+import hongik.hongikhospital.service.HospitalDto;
 import hongik.hongikhospital.service.HospitalService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -42,8 +43,8 @@ public class HospitalController {
 
     @GetMapping("/hospitals")
     public String hospitals(Model model) {
-        List<Hospital> hospitals = hospitalService.findAll();
-        model.addAttribute("hospitals", hospitals);
+        List<HospitalDto> hospitalDtos = hospitalService.findAll();
+        model.addAttribute("hospitals", hospitalDtos);
 
         return "hospitals/hospitalsList";
     }
